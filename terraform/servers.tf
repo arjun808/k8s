@@ -57,7 +57,7 @@ resource "aws_instance" "K8node" {
         inline = [
           "sudo mv /home/ubuntu/install-node.sh /root/install-node.sh",
           "sudo chmod +x /root/install-node.sh",
-         // "sudo /root/install-node.sh"
+          "sudo /root/install-node.sh"
         ]
   }
 
