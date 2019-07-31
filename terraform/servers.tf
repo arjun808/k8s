@@ -64,7 +64,7 @@ resource "aws_instance" "K8node" {
 }
 
 output "master_ip" {
-  value = "${aws_instance.K8master.public_ip}"
+    value = "${join(",", aws_instance.K8master.*.public_ip)}"
 }
 
 output "node_ips" {
