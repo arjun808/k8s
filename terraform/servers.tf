@@ -1,6 +1,7 @@
 resource "aws_instance" "K8master" {
   ami             = "${data.aws_ami.ubuntu.id}"
   instance_type   = "${var.k8-master-size}"
+  count           = "${var.master-count}"
   security_groups = ["${aws_security_group.K8master.id}"]
   key_name        = "${var.keyname}"
   subnet_id       = "${element(data.aws_subnet_ids.all.ids, count.index)}"
@@ -56,7 +57,7 @@ resource "aws_instance" "K8node" {
         inline = [
           "sudo mv /home/ubuntu/install-node.sh /root/install-node.sh",
           "sudo chmod +x /root/install-node.sh",
-          "sudo /root/install-node.sh"
+         // "sudo /root/install-node.sh"
         ]
   }
 
